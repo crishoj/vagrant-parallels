@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<title> Using Packer - Vagrant Parallels Provider Documentation</title>
+
+		<!-- meta -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- lib styles -->
+		<link href="../../stylesheets/bootstrap-8082a218.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="../../stylesheets/vagrant-parallels-a389b6ea.css" media="screen" rel="stylesheet" type="text/css" />
+
+		<!-- lib js -->
+		<script src="../../javascripts/jquery-15b079d7.js" type="text/javascript"></script>
+		<script src="../../javascripts/modernizr-d56a170f.js" type="text/javascript"></script>
+		<script src="../../javascripts/bootstrap.min-98cc7a22.js" type="text/javascript"></script>
+		<script src="../../javascripts/backstretch-f9c163c1.js" type="text/javascript"></script>
+		<script src="../../javascripts/vagrant-parallels-966ff22c.js" type="text/javascript"></script>
+
+		<!-- fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+	</head>
+	<body>
+		<!-- wrap everything -->
+		<div class="wrapper">
+
+			<!-- nav -->
+
+			<nav class="docs">
+            <div class="container">
+                <!-- vagrant logo -->
+                <a class="vagrant-docs-logo" href="../">Vagrant Parallels Documentation</a>
+                <!-- nav -->
+                <ul class="pull-right">
+                    <li><a href="https://docs.vagrantup.com">Vagrant Docs</a></li>
+                    <li><a href="https://github.com/Parallels/vagrant-parallels">Github</a></li>
+                </ul>
+            </div> <!-- container -->
+			</nav>
+
+			<div class="page docs docs-home">
+				<div class="container">
+                    <div class="sidebar span4">
+                        <!-- get the sidebar nav -->
+                        <!-- side nav docs -->
+                        <aside class="sidebar-nav">
+
+                        <div class="toggle hidden-desktop">
+                            <div class="open-close open"></div>
+                            <a href="#">Contents</a>
+                        </div>
+
+                        <ul class="unstyled">
+                            <li><a href="../">Overview</a></li>
+
+                            <li><a href="../installation/">Installation</a></li>
+                            
+
+                            <li><a href="../usage.html">Usage</a></li>
+
+                            <li><a href="../getting-started.html">Getting Started</a></li>
+
+                            <li><a href="../share.html">Vagrant Share</a></li>
+
+                            <li><a href="./">Boxes</a></li>
+                            
+                            <ul class="sub unstyled">
+                                <li><a href="base.html">Creating a Base Box</a></li>
+                                <li class="current"><a href="packer.html">Using Packer</a></li>
+                                <li><a href="veewee.html">Using Veewee</a></li>
+                            </ul>
+                            
+
+                            <li><a href="../configuration.html">Configuration</a></li>
+
+                            <li><a href="../networking/">Networking</a></li>
+                            
+
+                            <li><a href="../contacts.html">Contacts</a></li>
+
+                        </ul>
+                        </aside> <!-- /.sidebar -->
+                    </div> <!-- /.sidebar -->
+
+                    <div class="page-contents span9">
+                        <div class="page-background"></div>
+
+                        <!-- start page content -->
+                        <div class="row">
+                            <div class="span8 offset1">
+                                <h1>Using Packer</h1>
+
+<div class="alert alert-warn">
+    <p>
+        <strong>Warning: Advanced Topic!</strong> If you're not familiar with
+        Packer, you should read the <a href="https://packer.io/docs">
+        Packer documentation</a> first.
+    </p>
+</div>
+
+<p>Packer must be properly installed in order to build a new base box using templates. 
+Read the installation instruction here: https://packer.io/docs/installation.html</p>
+
+<h2>Parallels Virtualization SDK</h2>
+
+<p>Packer requires the &#39;prlsdkapi&#39; Python module from the Parallels Virtualization
+SDK to interact with Parallels Desktop and virtual machines. To use Parallels 
+builders for Packer you need to download and install this SDK: 
+<a href="http://www.parallels.com/download/pvsdk/">The Parallels Virtualization SDK for Mac</a></p>
+
+<h2>Packer Templates</h2>
+
+<p>Packer is shipped with <code>parallels-iso</code> builder, which can be used to create 
+base Vagrant boxes for the Parallels provider.</p>
+
+<p>There are two popular projects containing Packer templates for <code>parallels-iso</code> builder:</p>
+
+<ul>
+<li><a href="https://github.com/chef/bento">Bento</a></li>
+<li><a href="https://github.com/boxcutter/">Boxcutter</a></li>
+</ul>
+
+<p>In Parallels we build our <a href="https://atlas.hashicorp.com/boxes/search?provider=parallels">official boxes</a> 
+using templates based on Bento project.</p>
+
+<h2>Building a Box</h2>
+
+<p>This is an example how to build Vagrant box for Parallels provider:</p>
+
+<pre><code>$ packer build -only=parallels-iso template.json
+</code></pre>
+
+<p>Packer will done everything you need: it will download an ISO image, setup a VM, 
+install Parallels Tools, make basic provisioning, and it will export the VM image
+to a <code>*.box</code> file</p>
+
+<p>You can read more about options which all supported template options here: 
+<a href="https://packer.io/docs/builders/parallels-iso.html">&quot;parallels-iso&quot; builder documentation</a></p>
+
+                            </div> <!-- /.span8 -->
+                        </div> <!-- /.row -->
+                    </div> <!-- /.page-contents -->
+				</div> <!-- /.container -->
+			</div> <!-- /.page -->
+
+			<!-- footer -->
+			<footer>
+			<div class="container">
+				<div class="row">
+                    <ul class="unstyled logos">
+                        <a href="http://www.vagrantup.com/downloads.html">
+                            <li class="vagrant-logo-monochrome">
+                                <p>Vagrant</p>
+                            </li>
+                        </a>
+                        <a href="http://www.parallels.com/downloads/desktop/">
+                            <li class="pd-logo-monochrome">
+                                <p>Parallels Desktop</p>
+                            </li>
+                        </a>
+                    </ul> <!-- /span -->
+
+				</div> <!-- /row -->
+
+				<div class="row">
+					<h6 class="legal">
+                        &copy; 2015 Parallels IP Holdings GmbH.
+					</h6>
+				</div> <!-- row -->
+			</div> <!-- container -->
+			</footer>
+
+			<!-- close .wrapper -->
+		</div>
+
+		<!-- load scripts -->
+	</body>
+</html>
